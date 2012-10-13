@@ -48,23 +48,34 @@ public class GeneAnnotator extends JCasAnnotator_ImplBase {
       sentenceIdentifier = annotation.getIdentifier();
       sentenceText = annotation.getText();
       Map<Integer, Integer> occurences = Tagger.getGeneSpans(sentenceText);
+      int begin;
+      int end;
+      
       for (Map.Entry<Integer, Integer> entry : occurences.entrySet())
       {
           System.out.println(entry.getKey() + "/" + entry.getValue());
+          begin = entry.getKey();
+          end = entry.getValue();
+          GeneTag ann = new GeneTag(jcas);
+          ann.setBegin(begin);
+          ann.setEnd(end);
+          ann.setIdentifier(sentenceIdentifier);
+          ann.setName(sentenceText.substring(begin, end));
+          ann.addToIndexes();
       }
 
-      String text[] = sentenceText.split(" ");
-      int begin = 0;
-      for(int i=0; i< text.length; i++){
-        GeneTag ann = new GeneTag(jcas);
-        ann.setBegin(begin);
-        ann.setEnd(begin + text[i].length());
-        ann.setIdentifier(sentenceIdentifier);
-        ann.setName(text[i]);
-        ann.addToIndexes();
-        begin += text[i].length();
+      //String text[] = sentenceText.split(" ");
+      //int begin = 0;
+     // for(int i=0; i< text.length; i++){
+       // GeneTag ann = new GeneTag(jcas);
+        //ann.setBegin(begin);
+        //ann.setEnd(begin + text[i].length());
+        //ann.setIdentifier(sentenceIdentifier);
+        //ann.setName(text[i]);
+        //ann.addToIndexes();
+        //begin += text[i].length();
 
-      }
+      //}
       
     }       
     
