@@ -37,12 +37,12 @@ public class GeneAnnotator extends JCasAnnotator_ImplBase {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
+    CSVToHashMap genes = new CSVToHashMap();
     
 
     // retrieve the filename of the input file from the CAS
     FSIterator it = jcas.getAnnotationIndex(sentence.type).iterator();
     while (it.hasNext()) {
-      System.out.println("Iterating through sentences");
 
       sentence annotation = (sentence) it.next();
       sentenceIdentifier = annotation.getIdentifier();
@@ -50,32 +50,21 @@ public class GeneAnnotator extends JCasAnnotator_ImplBase {
       Map<Integer, Integer> occurences = Tagger.getGeneSpans(sentenceText);
       int begin;
       int end;
-      
+      String gene;
       for (Map.Entry<Integer, Integer> entry : occurences.entrySet())
       {
-          System.out.println(entry.getKey() + "/" + entry.getValue());
           begin = entry.getKey();
           end = entry.getValue();
-          GeneTag ann = new GeneTag(jcas);
-          ann.setBegin(begin);
-          ann.setEnd(end);
-          ann.setIdentifier(sentenceIdentifier);
-          ann.setName(sentenceText.substring(begin, end));
-          ann.addToIndexes();
+          gene = sentenceText.substring(begin, end);
+          if(genes.findGene(gene) == true ){
+            GeneTag ann = new GeneTag(jcas);
+            ann.setBegin(begin);
+            ann.setEnd(end);
+            ann.setIdentifier(sentenceIdentifier);
+            ann.setName(gene);
+            ann.addToIndexes();
+          }
       }
-
-      //String text[] = sentenceText.split(" ");
-      //int begin = 0;
-     // for(int i=0; i< text.length; i++){
-       // GeneTag ann = new GeneTag(jcas);
-        //ann.setBegin(begin);
-        //ann.setEnd(begin + text[i].length());
-        //ann.setIdentifier(sentenceIdentifier);
-        //ann.setName(text[i]);
-        //ann.addToIndexes();
-        //begin += text[i].length();
-
-      //}
       
     }       
     

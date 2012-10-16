@@ -17,10 +17,13 @@ import hw1.kmandavi.sentence;
 
 public class SentenceReader extends CollectionReader_ImplBase {
   
-  private String nextSentence;
   private BufferedReader in;
   private int read = 1;
   String cas = "";
+  /*
+   * (non-Javadoc)
+   * @see org.apache.uima.collection.CollectionReader_ImplBase#initialize()
+   */
   public void initialize() throws ResourceInitializationException {
     String input = (String) getConfigParameterValue("INPUT_FILE");
     FileReader file;
@@ -30,12 +33,9 @@ public class SentenceReader extends CollectionReader_ImplBase {
       in = new BufferedReader(file);
       System.out.println(input);
        int i=0;
-       char chars[]=new char[4096];
+      char chars[]=new char[4096];
       while( (in.read(chars))!=-1 ){
-        //System.out.println("Collection Reader: reading line by line");
-        //System.out.println(nextSentence);
         cas+=new String(chars);
-        //cas = cas + "\n" + nextSentence;
         chars=null;
         chars=new char[4096];
       }
@@ -48,6 +48,10 @@ public class SentenceReader extends CollectionReader_ImplBase {
   }
 
   @Override
+  /*
+   * This implementation gets the CAS object and assigns the value to the CAS. 
+   * @see org.apache.uima.collection.CollectionReader#getNext(org.apache.uima.cas.CAS)
+   */
   public void getNext(CAS aCAS) throws IOException, CollectionException {
     System.out.println("Collection Reader:getNext");
     JCas jcas;
@@ -71,6 +75,10 @@ public class SentenceReader extends CollectionReader_ImplBase {
   }
 
   @Override
+  /*
+   * Overridden to return true only for the first time so as to read the file. (non-Javadoc)
+   * @see org.apache.uima.collection.base_cpm.BaseCollectionReader#hasNext()
+   */
   public boolean hasNext() throws IOException, CollectionException {
     System.out.println("Collection Reader:hasNext");
     if(read == 1) return true;

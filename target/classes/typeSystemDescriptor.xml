@@ -20,7 +20,7 @@
         </featureDescription>
         <featureDescription>
           <name>text</name>
-          <description>sentance text for input
+          <description>sentence text for input
 </description>
           <rangeTypeName>uima.cas.String</rangeTypeName>
         </featureDescription>
