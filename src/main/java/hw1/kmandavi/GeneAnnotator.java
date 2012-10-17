@@ -56,6 +56,12 @@ public class GeneAnnotator extends JCasAnnotator_ImplBase {
           begin = entry.getKey();
           end = entry.getValue();
           gene = sentenceText.substring(begin, end);
+          begin = begin - countWhiteSpaces(sentenceText.substring(0,begin)) ;
+          end = begin + gene.length() - countWhiteSpaces(gene) - 1;
+          //String strippedText = sentenceText.trim();
+          //begin = strippedText.indexOf(gene);
+          //end = begin + gene.length() - 1;
+          
           if(genes.findGene(gene) == true ){
             GeneTag ann = new GeneTag(jcas);
             ann.setBegin(begin);
@@ -68,6 +74,16 @@ public class GeneAnnotator extends JCasAnnotator_ImplBase {
       
     }       
     
+  }
+  
+  private int countWhiteSpaces(String phrase){
+    int countBlank = 0;
+    for(int i=0; i<phrase.length(); i++) {
+      if(Character.isWhitespace(phrase.charAt(i))) {
+          countBlank++;
+      }
+  }
+    return countBlank;
   }
 
 }
