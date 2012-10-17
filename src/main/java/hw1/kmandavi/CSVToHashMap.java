@@ -22,7 +22,7 @@ public class CSVToHashMap {
    */
   public CSVToHashMap(){
     try {
-      file = new FileReader("src/main/resources/data/genenames.csv");
+      file = new FileReader("src/main/resources/genenames.csv");
     } catch (FileNotFoundException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();

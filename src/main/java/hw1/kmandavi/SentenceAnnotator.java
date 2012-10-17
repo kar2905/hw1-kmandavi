@@ -28,10 +28,10 @@ public class SentenceAnnotator extends JCasAnnotator_ImplBase {
       String sentenceIdentifier = text[i].substring(0, firstSpace);
       String sentenceText = text[i].substring(firstSpace).trim();
 
-       sentence annotation = new sentence(aJCas);
-        annotation.setIdentifier(sentenceIdentifier);
-        annotation.setText(sentenceText);
-        annotation.addToIndexes();
+      sentence annotation = new sentence(aJCas);
+      annotation.setIdentifier(sentenceIdentifier);
+      annotation.setText(sentenceText);
+      annotation.addToIndexes();
     }
    
     
