@@ -22,6 +22,12 @@ public class GeneAnnotator extends JCasAnnotator_ImplBase {
   
 
   @Override
+  /**
+   * Implementation for the process method
+   * Annotates Genes. 
+   * Retrieves the sentence CAS, uses NER and then looks up the entities in the gene database
+   * If found, adds a new index to the CAS with the respective offset
+   */
   public void process(JCas aJCas) throws AnalysisEngineProcessException {
     // TODO Auto-generated method stub
     // get document text
@@ -58,9 +64,6 @@ public class GeneAnnotator extends JCasAnnotator_ImplBase {
           gene = sentenceText.substring(begin, end);
           begin = begin - countWhiteSpaces(sentenceText.substring(0,begin)) ;
           end = begin + gene.length() - countWhiteSpaces(gene) - 1;
-          //String strippedText = sentenceText.trim();
-          //begin = strippedText.indexOf(gene);
-          //end = begin + gene.length() - 1;
           
           if(genes.findGene(gene) == true ){
             GeneTag ann = new GeneTag(jcas);
@@ -75,6 +78,12 @@ public class GeneAnnotator extends JCasAnnotator_ImplBase {
     }       
     
   }
+  
+  /**
+   * Counts the whitespace in a given string
+   * @param phrase string to search whitespace in
+   * @return number of whitespaces
+   */
   
   private int countWhiteSpaces(String phrase){
     int countBlank = 0;

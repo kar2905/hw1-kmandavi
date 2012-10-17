@@ -20,8 +20,8 @@ public class SentenceReader extends CollectionReader_ImplBase {
   private BufferedReader in;
   private int read = 1;
   String cas = "";
-  /*
-   * (non-Javadoc)
+  /**
+   * Reads the input file and builds for the CAS
    * @see org.apache.uima.collection.CollectionReader_ImplBase#initialize()
    */
   public void initialize() throws ResourceInitializationException {
@@ -48,7 +48,8 @@ public class SentenceReader extends CollectionReader_ImplBase {
   }
 
   @Override
-  /*
+  /**
+   * Sets the document to the CAS
    * This implementation gets the CAS object and assigns the value to the CAS. 
    * @see org.apache.uima.collection.CollectionReader#getNext(org.apache.uima.cas.CAS)
    */

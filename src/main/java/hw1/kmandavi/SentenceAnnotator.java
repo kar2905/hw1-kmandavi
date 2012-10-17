@@ -15,6 +15,9 @@ public class SentenceAnnotator extends JCasAnnotator_ImplBase {
   
 
   @Override
+  /**
+   * Annotates into different sentences from the CAS
+   */
   public void process(JCas aJCas) throws AnalysisEngineProcessException {
     // TODO Auto-generated method stub
     // get document text
