@@ -28,7 +28,7 @@ public class GeneCasConsumer extends CasConsumer_ImplBase {
 		docNum = 0;
 		try {
 		//out = new File((String) getConfigParameterValue("OUTPUT_FILE"));
-    out = new File("/home/kartik/andorid-workspace/hw1-kmandavi/src/main/resources/data/test.out");
+    out = new File("hw1-kmandavi.out");
     bw = new BufferedWriter(new FileWriter(out));
 		} catch (Exception e) {
 			e.printStackTrace();
