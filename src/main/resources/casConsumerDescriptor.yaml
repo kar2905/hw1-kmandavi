@@ -1,0 +1,4 @@
+class: hw1.kmandavi.casConsumers.GeneCasConsumer
+
+configuration:
+	name: casConsumerDescriptor	

@@ -1,0 +1,6 @@
+class: hw1.kmandavi.collectionReaders.SentenceReader
+
+configuration:
+	name: collectionReaderDescriptor
+	INPUT_FILE: "hw1.in"
+	

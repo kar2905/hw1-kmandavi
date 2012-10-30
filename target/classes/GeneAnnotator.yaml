@@ -1,0 +1,5 @@
+class: hw1.kmandavi.GeneAnnotator
+
+configuration:
+	name: GeneAnnotator
+	
