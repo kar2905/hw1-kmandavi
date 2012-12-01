@@ -22,10 +22,17 @@ public class CSVToHashMap {
    */
   public CSVToHashMap(){
     try {
-      file = new FileReader("src/main/resources/genenames.csv");
+      //file = new FileReader("src/main/resources/genenames.csv");
+      file = new FileReader("genenames.csv");
+
     } catch (FileNotFoundException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
+      try {
+        file = new FileReader("src/main/resources/genenames.csv");
+      } catch (FileNotFoundException e1) {
+        // TODO Auto-generated catch block
+        e1.printStackTrace();
+      }
     }
     System.out.println("Generating HashSet");
 
